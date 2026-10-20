@@ -14,7 +14,7 @@
   font-size: 14px;
 }
 .segmented .is-active {
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #fff;
   font-weight: 700;
 }
@@ -98,6 +98,6 @@
   font-weight: 700;
 }
 .sheet-buttons .primary {  /* 保存ボタン */
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #fff;
 }

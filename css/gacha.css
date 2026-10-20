@@ -23,7 +23,7 @@
   background: color-mix(in srgb, var(--meal-color) 14%, var(--card));
 }
 .meal-card.is-off {      /* 「食べない」：薄くする */
-  opacity: 0.55;
+  opacity: var(--off-opacity);
 }
 .meal-card.is-spinning .meal-name {  /* 抽選中：ぼかす */
   opacity: 0.45;
@@ -100,7 +100,7 @@
 .switch i {              /* スイッチの土台 */
   position: absolute;
   inset: 0;
-  background: var(--border);
+  background: var(--track);
   border-radius: 99px;
   transition: 0.2s;
 }
@@ -146,7 +146,7 @@
   width: 100%;
   padding: 18px;
   border-radius: 18px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2));
+  background: linear-gradient(135deg, var(--deep-1), var(--deep-2));
   color: #fff;
   font-size: 20px;
   font-weight: 800;

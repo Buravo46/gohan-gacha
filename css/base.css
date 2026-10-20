@@ -14,41 +14,64 @@
   --border: #f1e3d6;          /* 枠線 */
   --shadow: 0 4px 16px rgba(120, 70, 30, 0.1);
 
-  --grad-1: #ff7a45;          /* グラデーションの色1（ヘッダー・ガチャボタン） */
-  --grad-2: #ffb347;          /* グラデーションの色2 */
+  --grad-1: #ff7a45;          /* テーマのグラデーション色1（JSが書き換える） */
+  --grad-2: #ffb347;          /* テーマのグラデーション色2 */
 
   /* 薄いアクセント色：メインカラーとカード色を混ぜて自動計算 */
   --accent-strength: 16%;
   --accent-soft: color-mix(in srgb, var(--accent) var(--accent-strength), var(--card));
 
+  /* 「白い文字を載せる面」の色。ダークモードでは濃くして、文字を読みやすくする */
+  --accent-solid: var(--accent);  /* 選択中のタブ・保存ボタン・＋ボタン */
+  --deep-1: var(--grad-1);        /* ヘッダー・ガチャボタンのグラデーション */
+  --deep-2: var(--grad-2);
+
+  --track: var(--border);         /* スイッチがオフのときの土台の色 */
+  --off-opacity: 0.55;            /* 「食べない」カードの薄さ */
+
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px); /* ノッチ対策 */
 }
 
-/* ---------- ダークモード：端末の設定に合わせて自動で切り替わる ---------- */
+/* ---------- ダークモード ----------
+   端末の設定に合わせて自動で切り替わる。設定画面の「表示モード」で手動も選べる。
+   読みやすさのポイント：
+   ・カードを背景より明るくし、枠線をはっきりさせる
+   ・補足文字を明るくする
+   ・白い文字を載せる面は、色を濃くして文字との差を確保する */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #17120f;
-    --card: #241d18;
-    --text: #f6ece2;
-    --muted: #a89888;
-    --accent: #ff8a5c;
-    --border: #352b24;
-    --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --accent-strength: 24%;
+    --bg: #1c1714;
+    --card: #2c2520;
+    --text: #f8f0e8;
+    --muted: #c4b5a5;
+    --accent: #ff9a70;
+    --border: #54463a;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    --accent-strength: 22%;
+    --accent-solid: color-mix(in srgb, var(--accent) 66%, #000);
+    --deep-1: color-mix(in srgb, var(--grad-1) 70%, #000);
+    --deep-2: color-mix(in srgb, var(--grad-2) 70%, #000);
+    --track: #6b5b4e;
+    --off-opacity: 0.7;
   }
 }
 
-/* 手動でダークにしたい場合（<html data-theme="dark">） */
+/* 手動でダークを選んだとき（<html data-theme="dark">）。上と同じ値にしておくこと */
 :root[data-theme="dark"] {
-  --bg: #17120f;
-  --card: #241d18;
-  --text: #f6ece2;
-  --muted: #a89888;
-  --accent: #ff8a5c;
-  --border: #352b24;
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --accent-strength: 24%;
+  --bg: #1c1714;
+  --card: #2c2520;
+  --text: #f8f0e8;
+  --muted: #c4b5a5;
+  --accent: #ff9a70;
+  --border: #54463a;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  --accent-strength: 22%;
+  --accent-solid: color-mix(in srgb, var(--accent) 66%, #000);
+  --deep-1: color-mix(in srgb, var(--grad-1) 70%, #000);
+  --deep-2: color-mix(in srgb, var(--grad-2) 70%, #000);
+  --track: #6b5b4e;
+  --off-opacity: 0.7;
 }
 
 /* ---------- 2. リセット・全体レイアウト ---------- */

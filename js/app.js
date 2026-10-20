@@ -28,6 +28,7 @@ $("todayLabel").textContent = new Date().toLocaleDateString("ja-JP", {
   weekday: "short",
 });                                             // 2. ヘッダーの日付
 applyTheme(store.th);                           // 3. テーマカラー
+applyMode(store.mode);                          //    表示モード（自動／ライト／ダーク）
 renderMealCards();                              // 4. 各画面を描画
 renderHistory();
 renderDishList();

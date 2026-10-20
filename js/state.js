@@ -7,7 +7,8 @@
    store.last : 前回出た料理名   { b:"…", … }  → 同じ料理が続けて出にくくする
    store.ON   : 食べる食事       { b:1, l:1, d:1 }  （0 = 食べない）
    store.hist : 履歴            [{ t:時刻, r:{ b:"料理名"|null, … } }]
-   store.th   : テーマカラー番号（未選択なら undefined） */
+   store.th   : テーマカラー番号（未選択なら undefined）
+   store.mode : 表示モード "auto" | "light" | "dark"（未選択なら自動） */
 let store = {
   D: JSON.parse(JSON.stringify(DEFAULT_DISHES)), // 初期値のコピー（古いスマホでも動く書き方）
   last: {},
