@@ -1,0 +1,197 @@
+/* =====================================================
+   gacha.css ― ガチャ画面
+   食事カード / 食べる・食べないスイッチ / 参照URLボタン / ガチャボタン / 履歴
+   ===================================================== */
+
+/* ---------- 食事カード（朝・昼・夕） ---------- */
+.meal-card {
+  --meal-color: #f6b73c;    /* 朝食の色。昼・夕は下で上書き */
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--meal-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+.meal-l { --meal-color: #4cc38a; }
+.meal-d { --meal-color: #7f77f5; }
+
+/* 状態の見た目 */
+.meal-card.is-locked {   /* ロック中：色を薄く付ける */
+  background: color-mix(in srgb, var(--meal-color) 14%, var(--card));
+}
+.meal-card.is-off {      /* 「食べない」：薄くする */
+  opacity: 0.55;
+}
+.meal-card.is-spinning .meal-name {  /* 抽選中：ぼかす */
+  opacity: 0.45;
+  filter: blur(1px);
+}
+.meal-card.is-popping .meal-name {   /* 結果が出た瞬間：ポンと弾む */
+  animation: pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+}
+
+/* カード上部：アイコン・食事名・スイッチ */
+.meal-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.meal-head b {
+  flex: 1;
+  font-size: 14px;
+  color: var(--muted);
+}
+.meal-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--meal-color) 22%, transparent);
+  font-size: 18px;
+}
+.switch-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* 料理名 */
+.meal-name {
+  min-height: 1.3em;
+  margin: 10px 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  word-break: break-all;
+}
+/* カード下部：ロック／引き直し */
+.meal-actions {
+  display: flex;
+  gap: 8px;
+}
+.meal-actions button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* ---------- 食べる／食べない 切替スイッチ ---------- */
+.switch {
+  position: relative;
+  flex: none;
+  width: 46px;
+  height: 26px;
+}
+.switch input {          /* 本物のチェックボックスは透明にして全面に重ねる */
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.switch i {              /* スイッチの土台 */
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 99px;
+  transition: 0.2s;
+}
+.switch i::after {       /* 白い丸 */
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: 0.2s;
+}
+.switch input:checked + i {
+  background: var(--meal-color);
+}
+.switch input:checked + i::after {
+  transform: translateX(20px);
+}
+
+/* ---------- 参照URL（🔗）のボタン ---------- */
+.link-pill {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.link-pill--small {      /* 料理リスト用の小さい版 */
+  margin: 0;
+  padding: 2px 8px;
+}
+
+/* ---------- 「ガチャを回す」ボタン ---------- */
+.draw-btn {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2));
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(255, 122, 69, 0.4);
+  animation: glow 2.4s infinite;   /* ゆっくり光る */
+}
+.draw-btn:active {
+  transform: scale(0.98);
+}
+.draw-btn::after {                 /* 横切る光 */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: shine 2.8s infinite;
+}
+@keyframes shine {
+  to { left: 130%; }
+}
+@keyframes glow {
+  50% { box-shadow: 0 6px 28px color-mix(in srgb, var(--accent) 65%, transparent); }
+}
+
+.ghost-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* ---------- 最近の献立（履歴） ---------- */
+.history-row {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 14px;
+}
+.history-row:last-child {
+  border: 0;
+}
+.history-row small {
+  width: 2.6em;
+  color: var(--muted);
+}

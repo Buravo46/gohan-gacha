@@ -1,0 +1,150 @@
+/* =====================================================
+   layout.css ― 画面全体の部品
+   ヘッダー / 画面下のタブバー / 右下の＋ボタン / お知らせ / 画面切替
+   ===================================================== */
+
+/* ---------- ヘッダー（上部のグラデーション） ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -16px 16px;
+  padding: 22px 20px 26px;
+  color: #fff;
+  border-radius: 0 0 28px 28px;
+  /* ゆっくり動くグラデーション */
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2), var(--grad-1));
+  background-size: 200% 200%;
+  animation: hero-flow 8s ease infinite;
+}
+.hero > * {
+  position: relative;
+}
+.hero small {
+  opacity: 0.9;
+  font-size: 13px;
+}
+.hero h1 {
+  margin: 4px 0 0;
+  font-size: 24px;
+}
+@keyframes hero-flow {
+  50% { background-position: 100% 50%; }
+}
+
+/* 背景でふわふわ浮かぶ絵文字 */
+.hero > .floaters {
+  position: absolute;
+  inset: 0;
+}
+.floaters span {
+  position: absolute;
+  font-size: 34px;
+  opacity: 0.22;
+  animation: floating 7s ease-in-out infinite;
+}
+.floaters span:nth-child(1) { right: 8%;  top: 14%; }
+.floaters span:nth-child(2) { right: 28%; top: 56%; animation-delay: -2s; }
+.floaters span:nth-child(3) { right: 3%;  top: 62%; animation-delay: -4s; }
+@keyframes floating {
+  50% { transform: translateY(-10px) rotate(12deg); }
+}
+
+/* 「🍴 登録 ○品」 */
+.hero-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 12px;
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- 画面切替：表示されるときにふわっと出る ---------- */
+section {
+  animation: fade-in 0.25s ease-out;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+/* ---------- 画面下のタブバー（すりガラス風） ---------- */
+nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 82%, transparent);
+  backdrop-filter: blur(14px);
+}
+nav button {
+  flex: 1;
+  max-width: 170px;
+  padding: 6px;
+  background: none;
+  color: var(--muted);
+  font-size: 11px;
+}
+nav button span {
+  display: block;
+  font-size: 22px;
+  transition: 0.2s;
+}
+/* 選択中のタブ：色・アイコン拡大・下のバー */
+nav .is-active {
+  color: var(--accent);
+  font-weight: 700;
+}
+nav .is-active span {
+  transform: translateY(-2px) scale(1.15);
+}
+nav .is-active::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 3px;
+  margin: 3px auto 0;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+/* ---------- 右下の「＋」ボタン ---------- */
+.fab {
+  position: fixed;
+  right: max(18px, calc(50% - 242px)); /* PCでもアプリ幅の右端に揃える */
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  z-index: 6;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(255, 122, 69, 0.5);
+}
+
+/* ---------- 画面下のお知らせ（トースト） ---------- */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 30;
+  max-width: 90%;
+  padding: 10px 16px;
+  border-radius: 99px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 13px;
+  text-align: center;
+}
+#toast:empty {
+  display: none;
+}

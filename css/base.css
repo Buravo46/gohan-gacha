@@ -1,0 +1,124 @@
+/* =====================================================
+   base.css ― 基本設定
+   1. 配色（CSS変数）  2. リセット・全体レイアウト  3. 共通パーツ
+   ※ HTMLの <link> は base → layout → gacha → dishes → settings → effects の順
+   ===================================================== */
+
+/* ---------- 1. 配色（ライトモード） ---------- */
+:root {
+  --bg: #fff8f1;              /* ページ背景 */
+  --card: #fff;               /* カード背景 */
+  --text: #33261c;            /* 文字色 */
+  --muted: #8c7a6b;           /* 補足の文字色 */
+  --accent: #ff7a45;          /* メインカラー（テーマ選択で上書きされる） */
+  --border: #f1e3d6;          /* 枠線 */
+  --shadow: 0 4px 16px rgba(120, 70, 30, 0.1);
+
+  --grad-1: #ff7a45;          /* グラデーションの色1（ヘッダー・ガチャボタン） */
+  --grad-2: #ffb347;          /* グラデーションの色2 */
+
+  /* 薄いアクセント色：メインカラーとカード色を混ぜて自動計算 */
+  --accent-strength: 16%;
+  --accent-soft: color-mix(in srgb, var(--accent) var(--accent-strength), var(--card));
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px); /* ノッチ対策 */
+}
+
+/* ---------- ダークモード：端末の設定に合わせて自動で切り替わる ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17120f;
+    --card: #241d18;
+    --text: #f6ece2;
+    --muted: #a89888;
+    --accent: #ff8a5c;
+    --border: #352b24;
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --accent-strength: 24%;
+  }
+}
+
+/* 手動でダークにしたい場合（<html data-theme="dark">） */
+:root[data-theme="dark"] {
+  --bg: #17120f;
+  --card: #241d18;
+  --text: #f6ece2;
+  --muted: #a89888;
+  --accent: #ff8a5c;
+  --border: #352b24;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --accent-strength: 24%;
+}
+
+/* ---------- 2. リセット・全体レイアウト ---------- */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* hidden属性が付いた要素は、他のdisplay指定があっても必ず隠す */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+main {
+  max-width: 520px;       /* スマホ幅のまま中央に表示 */
+  margin: 0 auto;
+  padding: 0 16px 110px;  /* 下は、タブバーに隠れない余白 */
+}
+
+/* ---------- 3. 共通パーツ ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.card--spaced {
+  margin-top: 16px;
+}
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 14px;
+  color: inherit;
+  background: var(--accent-soft);
+}
+
+/* 補足説明の小さな文字 */
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.hint--tight {
+  margin: 10px 0 0;
+}
+.hint--center {
+  text-align: center;
+}
+
+/* 「まだありません」などの空表示 */
+.empty {
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
+  line-height: 1.7;
+}

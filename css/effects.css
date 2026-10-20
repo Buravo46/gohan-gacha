@@ -1,0 +1,32 @@
+/* =====================================================
+   effects.css ― 演出
+   紙吹雪 / 「動きを減らす」設定への対応
+   ===================================================== */
+
+/* 紙吹雪（JSが <span class="confetti"> を作って落とす） */
+.confetti {
+  position: fixed;
+  top: -30px;
+  z-index: 20;
+  font-size: 24px;
+  pointer-events: none;
+  animation: fall 1.5s ease-in forwards;
+}
+@keyframes fall {
+  to { transform: translateY(105vh) rotate(360deg); }
+}
+
+/* 端末で「動きを減らす」を選んでいる人には、アニメーションを止める */
+@media (prefers-reduced-motion: reduce) {
+  .confetti {
+    display: none;
+  }
+  .hero,
+  .floaters span,
+  .draw-btn,
+  .draw-btn::after,
+  .sheet-panel,
+  section {
+    animation: none;
+  }
+}

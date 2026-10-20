@@ -1,0 +1,103 @@
+/* =====================================================
+   dishes.css ― 料理リスト画面と、追加・編集シート
+   ===================================================== */
+
+/* ---------- 食事タブ（朝食／昼食／夕食） ---------- */
+.segmented {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.segmented button {
+  flex: 1;
+  padding: 12px 4px;
+  font-size: 14px;
+}
+.segmented .is-active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+.segmented small {
+  opacity: 0.8;
+}
+
+/* ---------- 料理1件分のカード ---------- */
+.dish-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding: 6px 6px 6px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.dish-name {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  word-break: break-all;
+}
+.dish-item button {       /* ✏️ 🗑️ */
+  padding: 10px;
+  background: none;
+  font-size: 18px;
+}
+
+/* ---------- 追加・編集シート（下から出てくる入力画面） ---------- */
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sheet-backdrop {         /* 背景の暗い幕（タップで閉じる） */
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.sheet-panel {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 18px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+  background: var(--card);
+  border-radius: 24px 24px 0 0;
+  animation: slide-up 0.22s ease-out;
+}
+@keyframes slide-up {
+  from { transform: translateY(40px); opacity: 0; }
+}
+.sheet-panel h3 {
+  margin: 0 0 12px;
+}
+.sheet-panel input,
+.sheet-panel textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 13px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+}
+.sheet-panel textarea {
+  height: 96px;
+}
+.sheet-buttons {
+  display: flex;
+  gap: 8px;
+}
+.sheet-buttons button {
+  flex: 1;
+  padding: 14px;
+  font-weight: 700;
+}
+.sheet-buttons .primary {  /* 保存ボタン */
+  background: var(--accent);
+  color: #fff;
+}
