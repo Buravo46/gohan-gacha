@@ -108,3 +108,7 @@
 ## 動作環境
 
 最近のバージョンの iPhone（Safari）・Android（Chrome）、およびパソコンの主要ブラウザ。
+
+## ライセンス
+
+[MIT License](LICENSE) です。自由に使用・改変・再配布できます。
