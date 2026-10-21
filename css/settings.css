@@ -3,6 +3,20 @@
    CSVボタン / 説明リスト / チェック / テーマカラー選択
    ===================================================== */
 
+/* 設定1行分：左に説明、右にスイッチ */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.setting-row b {
+  font-size: 1rem;
+}
+.setting-row .hint {
+  margin: 4px 0 0;
+}
+
 /* 横並びのボタン（書き出す／読み込む） */
 .button-row {
   display: flex;
@@ -11,14 +25,14 @@
 .button-row button {
   flex: 1;
   padding: 14px 6px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 /* 「置き換える」チェック */
 .check-label {
   display: block;
   margin-top: 12px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
@@ -27,7 +41,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.7;
   color: var(--muted);
 }

@@ -29,6 +29,7 @@ $("todayLabel").textContent = new Date().toLocaleDateString("ja-JP", {
 });                                             // 2. ヘッダーの日付
 applyTheme(store.th);                           // 3. テーマカラー
 applyMode(store.mode);                          //    表示モード（自動／ライト／ダーク）
+applyTextSize(store.large);                     //    文字サイズ（大きい文字）
 renderMealCards();                              // 4. 各画面を描画
 renderHistory();
 renderDishList();

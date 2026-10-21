@@ -21,11 +21,11 @@
 }
 .hero small {
   opacity: 0.9;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .hero h1 {
   margin: 4px 0 0;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 @keyframes hero-flow {
   50% { background-position: 100% 50%; }
@@ -38,7 +38,7 @@
 }
 .floaters span {
   position: absolute;
-  font-size: 34px;
+  font-size: 2.125rem;
   opacity: 0.22;
   animation: floating 7s ease-in-out infinite;
 }
@@ -56,7 +56,7 @@
   padding: 4px 12px;
   border-radius: 99px;
   background: rgba(255, 255, 255, 0.25);
-  font-size: 12px;
+  font-size: 0.75rem;
   backdrop-filter: blur(6px);
 }
 
@@ -89,11 +89,11 @@ nav button {
   padding: 6px;
   background: none;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 nav button span {
   display: block;
-  font-size: 22px;
+  font-size: 1.375rem;
   transition: 0.2s;
 }
 /* 選択中のタブ：色・アイコン拡大・下のバー */
@@ -125,7 +125,7 @@ nav .is-active::after {
   border-radius: 50%;
   background: var(--accent-solid);
   color: #fff;
-  font-size: 32px;
+  font-size: 2rem;
   line-height: 1;
   box-shadow: 0 6px 18px rgba(255, 122, 69, 0.5);
 }
@@ -142,7 +142,7 @@ nav .is-active::after {
   border-radius: 99px;
   background: var(--text);
   color: var(--bg);
-  font-size: 13px;
+  font-size: 0.8125rem;
   text-align: center;
 }
 #toast:empty {

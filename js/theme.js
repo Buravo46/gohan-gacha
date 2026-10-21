@@ -1,5 +1,5 @@
 /* =====================================================
-   theme.js ― テーマカラー（丸ボタン）と、表示モード（自動／ライト／ダーク）
+   theme.js ― 見た目の設定：テーマカラー・表示モード（自動／ライト／ダーク）・文字サイズ
    ===================================================== */
 
 /* テーマを適用し、選択ボタンを描画する。index が未指定ならCSSの初期色のまま */
@@ -58,4 +58,20 @@ $("modePicker").onclick = (e) => {
   store.mode = btn.dataset.mode;
   saveStore();
   applyMode(store.mode);
+};
+
+/* ---------- 文字サイズ ---------- */
+
+/* 「大きい文字」を適用する。large が true なら <html data-text="large"> にする（倍率はCSS側で定義） */
+function applyTextSize(large) {
+  if (large) document.documentElement.setAttribute("data-text", "large");
+  else document.documentElement.removeAttribute("data-text");
+  $("largeTextToggle").checked = !!large; // スイッチの見た目を保存内容に合わせる
+}
+
+/* スイッチを切り替えたとき */
+$("largeTextToggle").onchange = (e) => {
+  store.large = e.target.checked ? 1 : 0;
+  saveStore();
+  applyTextSize(store.large);
 };
